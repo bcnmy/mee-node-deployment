@@ -113,6 +113,8 @@ The following environment variables can be added to your `.env` file for additio
 | `USEROP_SAFE_WINDOW_BEFORE_EXEC_END` | Early execution threshold (seconds) | 30 |
 | `MAX_CALLDATA_GAS_LIMIT` | Maximum calldata gas limit | 330000001 |
 | `HEALTH_CHECK_INTERVAL` | How often the node performs chain health checks (seconds) | 300 |
+| `GLUEX_PARTNER_UNIQUE_ID` | Partner ID for GlueX integration | - |
+| `GLUEX_API_KEY` | API key for GlueX integration | - |
 
 ## Loading Encrypted Private Key
 
@@ -136,6 +138,21 @@ Instead of providing the raw private key, you can use an encrypted key file:
    ```env
    ENV_ENC_PASSWORD=<your-encryption-password>
    ```
+
+## Any Gas Token Support
+
+If you want to support additional gas tokens beyond what's explicitly allowed by the chain configuration, you can activate GlueX integration. This feature enables users to pay for transaction execution using any supported token, while your node receives the native coin.
+
+GlueX integration works by automatically swapping the user's chosen token into the native coin required for execution. This means:
+- Users can spend any supported token
+- Your node receives the native coin for gas fees
+- The swap happens automatically as part of the transaction
+
+To activate GlueX support, add the following environment variables to your configuration:
+```env
+GLUEX_PARTNER_UNIQUE_ID=<your-partner-id>
+GLUEX_API_KEY=<your-api-key>
+```
 
 ## Node Maintenance
 
